@@ -54,6 +54,97 @@ variable_names <- data.frame(
 kable(variable_names, caption = "Variable Names of Interest")
 ```
 
+## Dataset Description
+
+The R code chunk below demonstrates the data cleaning process for this project.
+
+```{r dataset cleaning, message = FALSE}
+# Reading individual CSV files into respective dataframes
+number_healthy_diet <- read.csv("Data/number-healthy-diet-unaffordable.csv")
+
+share_healthy_diet <- read.csv("Data/share-healthy-diet-unaffordable.csv")
+
+cost_healthy_diet <- read.csv("Data/cost-healthy-diet-share-food-expenditure.csv")
+
+# Filtering the data for most recent year available and selecting the relevant columns
+number_healthy_diet_2021 <- number_healthy_diet %>% 
+  filter(Year == 2021) %>% 
+  select(Entity, 4)
+
+share_healthy_diet_2021 <- share_healthy_diet %>% 
+  filter(Year == 2021) %>% 
+  select(Entity, 4)
+
+cost_healthy_diet_2021 <- cost_healthy_diet %>% 
+  filter(Year == 2021) %>% 
+  select(Entity, 4)
+
+# Merging dataframes based on Entity variable (i.e. Name of Country)
+food_affordability_data <- number_healthy_diet_2021 %>%
+  left_join(share_healthy_diet_2021, by = "Entity") %>% 
+  left_join(cost_healthy_diet_2021, by = "Entity")
+
+# Renaming Entity variable to 'Country' and cleaning header names to introduce spacing
+
+food_affordability_data <- food_affordability_data %>% 
+  rename(Country = Entity,
+         `Number of people who cannot afford a healthy diet` = Number.of.people.who.cannot.afford.a.healthy.diet,
+         `Share of the population who cannot afford a healthy diet` = Share.of.the.population.who.cannot.afford.a.healthy.diet,
+         `Affordability of a healthy diet: ratio of cost to food expenditures` = Affordability.of.a.healthy.diet..ratio.of.cost.to.food.expenditures
+  )
+
+# Removing invalid entries under 'Country' variable
+invalid_country_entries <-  c("East Asia & Pacific (WB)", 
+                              "Europe & Central Asia (WB)",
+                              "High-income countries",
+                              "Latin America & Caribbean (WB)",
+                              "Low-income countries",
+                              "Lower-middle-income countries",
+                              "Middle East & North Africa (WB)",
+                              "North America (WB)",
+                              "South Asia (WB)",
+                              "Sub-Saharan Africa (WB)",
+                              "Upper-middle-income countries",
+                              "World")
+
+food_affordability_data <- food_affordability_data %>% 
+  filter(!Country %in% invalid_country_entries)
+
+# Removing invalid N/A entries under all variable columns
+food_affordability_data <- na.omit(food_affordability_data)
+
+# Re-grouping countries by their Continents using the 'countrycode' package
+food_affordability_data <- food_affordability_data %>% 
+  mutate(
+    Continent = countrycode(Country, origin = "country.name", destination = "continent")
+  )
+
+# Re-arranging the variables columns
+food_affordability_data <- food_affordability_data %>% 
+  select(Country, Continent, everything())
+```
+
+```{r number of observations and variables, echo = FALSE}
+# Calculating the number of observations and variables
+
+num_observations <- nrow(food_affordability_data)
+num_variables <- ncol(food_affordability_data)
+```
+
+The dataset regarding the affordability of healthy diets contains `r num_observations` observations and `r num_variables` variables. Please note the code to derive the number of observations and variables is, as below:
+
+```{r screenshot, echo = FALSE}
+# Implementing the screenshot into the project
+include_graphics("Image/Number of Observations and Variables Screenshot.png")
+```
+
+As observed below, the first two rows of the dataset can be displayed with `str()` to showcase the type of variables within the dataset.
+
+```{r first two rows, echo = FALSE}
+# Displaying the first two rows of the dataset
+str(food_affordability_data[1:2,])
+```
+
 ## References
 
 Whiting, K. (2022, September 21). *The cost-of-living crisis is having a global impact. Here's what countries are doing to help.* World Economic Forum. <https://www.weforum.org/stories/2022/09/cost-of-living-crisis-global-impact/>
