@@ -22,10 +22,42 @@ In recent years, the rising cost of living crisis has represented a particularly
 
 a large number of people have become increasingly exposed to food affordability issues. This project will investigate the matter of food insecurity, and consider the following: how much of the population across the globe are at risk of not affording a healthy diet?
 
+## Dataset Introduction
 
+Data for this project was sourced from [Our World in Data](https://ourworldindata.org/food-prices) in the Food Prices Data Explorer under the Food Prices topic, which in turn sourced its data from the Food and Agriculture Organization of the United Nations ('FAO') and the World Bank. Three different datasets were utilised for this project:
+
+-   [Number of people that cannot afford a healthy diet](https://ourworldindata.org/explorers/food-prices?Diet=Healthy+diet&Cost+or+Affordability=Affordability&Affordability+metric=Number+that+cannot+afford&Cost+metric=%25+of+average+food+expenditure&country=NGA~BGD~IND~ETH~MEX~USA~BRA~GBR)
+
+-   [Share of population that cannot afford a healthy diet](https://ourworldindata.org/explorers/food-prices?Diet=Healthy+diet&Cost+or+Affordability=Affordability&Affordability+metric=Share+that+cannot+afford&Cost+metric=%25+of+average+food+expenditure&country=NGA~BGD~IND~ETH~MEX~USA~BRA~GBR)
+
+-   [Cost of a healthy diet as a share of average expenditure on food](https://ourworldindata.org/explorers/food-prices?Diet=Healthy+diet&Cost+or+Affordability=Cost+&Affordability+metric=Share+that+cannot+afford&Cost+metric=%25+of+average+food+expenditure&country=NGA~BGD~IND~ETH~MEX~USA~BRA~GBR)
+
+We will be observing the most recent year (i.e. 2021) that data is readily available for all variables of interest in this project.
+
+The first two variables of interest *Number of people that cannot afford a healthy diet* and *Share of population that cannot afford a healthy diet* detail the number and percentage share of a country's population that cannot afford a healthy diet, where: "
+
+will be looking at both the number and percentage share of a country's population that cannot afford a healthy diet, where: "The cost of a healthy diet is the lowest-cost set of foods available that would meet requirements in dietary guidelines from governments and public health agencies. A diet is defined as unaffordable when its cost, plus basic non-food needs like housing and transportation, exceeds daily income" (Ritchie et al., 2023).
+
+Regarding the third and last variable of interest, *Cost of a healthy diet as a share of average expenditure on food*, it showcases the cost of a healthy diet represented as a ratio against a person's average food expenditure in a particular country.
+
+```{r variable names}
+# LIsting the variable names
+variable_names <- data.frame(
+  Variable_Names = c(
+    "Country",
+    "Continent",
+    "Number of people who cannot afford a healthy diet",
+    "Share of the population who cannot afford a healthy diet",
+    "Affordability of a healthy diet: ratio of cost to food expenditures"
+  ))
+
+kable(variable_names, caption = "Variable Names of Interest")
+```
 
 ## References
 
 Whiting, K. (2022, September 21). *The cost-of-living crisis is having a global impact. Here's what countries are doing to help.* World Economic Forum. <https://www.weforum.org/stories/2022/09/cost-of-living-crisis-global-impact/>
 
 Shipman, A., Smondel, A., Adhinegara, B. Y., Diamond, J. W., Vega, L. G., Shahrour, M. H., Martin, P. & Simpson, W. (2023, January 7). *Global economy 2023: how countries around the world are tackling the cost of living crisis*. The Conversation. <https://theconversation.com/global-economy-2023-how-countries-around-the-world-are-tackling-the-cost-of-living-crisis-196740>
+
+Ritchie, H., Rosado, P., & Roser, M. (2023). *Food Prices*. Our World in Data. <https://ourworldindata.org/food-prices>
