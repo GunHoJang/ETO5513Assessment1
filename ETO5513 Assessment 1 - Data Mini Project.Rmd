@@ -5,26 +5,27 @@ date: "`r Sys.Date()`"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include = FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
+```{r libraries, include =  FALSE, message = FALSE, warning = FALSE}
+# Loading libraries for the project
+library(tidyverse)
+library(countrycode)
+library(knitr)
 ```
 
-## Including Plots
+## Research Question
 
-You can also embed plots, for example:
+In recent years, the rising cost of living crisis has represented a particularly cumbersome period for economies worldwide as inflationary pressures on the price of food and energy have pushed households and businesses to the brink (Whiting, 2022; Shipman et al., 2023). Rising food prices in particular have consequentially affected a large number of people and their financial ability to afford groceries. This project will investigate this matter of food insecurity, and consider the following: how much of the population globally are unable to afford a healthy diet?
 
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
+a large number of people have become increasingly exposed to food affordability issues. This project will investigate the matter of food insecurity, and consider the following: how much of the population across the globe are at risk of not affording a healthy diet?
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+
+## References
+
+Whiting, K. (2022, September 21). *The cost-of-living crisis is having a global impact. Here's what countries are doing to help.* World Economic Forum. <https://www.weforum.org/stories/2022/09/cost-of-living-crisis-global-impact/>
+
+Shipman, A., Smondel, A., Adhinegara, B. Y., Diamond, J. W., Vega, L. G., Shahrour, M. H., Martin, P. & Simpson, W. (2023, January 7). *Global economy 2023: how countries around the world are tackling the cost of living crisis*. The Conversation. <https://theconversation.com/global-economy-2023-how-countries-around-the-world-are-tackling-the-cost-of-living-crisis-196740>
