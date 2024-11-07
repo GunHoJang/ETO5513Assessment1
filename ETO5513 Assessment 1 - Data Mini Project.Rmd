@@ -144,6 +144,24 @@ As observed below, the first two rows of the dataset can be displayed with `str(
 # Displaying the first two rows of the dataset
 str(food_affordability_data[1:2,])
 ```
+  
+## Data Summary
+
+```{r data summary}
+# Summary statistics for 'Number of people who cannot afford a healthy diet' and 'Affordability of a healthy diet: ratio of cost to food expenditures'
+data_summary <- food_affordability_data %>% 
+  group_by(Country) %>% 
+  summarise(
+    Mean_Number = format(mean(`Number of people who cannot afford a healthy diet`, na.rm = TRUE), scientific = FALSE),
+    Sum_Number = format(sum(`Number of people who cannot afford a healthy diet`, na.rm = TRUE), scientific = FALSE),
+    Mean_Share = format(mean(`Share of the population who cannot afford a healthy diet`, na.rm = TRUE), scientific =  FALSE),
+    Median_Share = format(median(`Share of the population who cannot afford a healthy diet`, na.rm = TRUE), scientific = FALSE)
+  ) %>% 
+  head(10)
+kable(data_summary, caption = "Summary statistics of the 'Number of people who cannot afford a healthy diet' and 'Share of the population who cannot afford a healthy diet' variables")
+```
+  
+From the summary statistics, we fail to gain further insight into a particular Country's data beyond what has already been provided in the original dataset. **Please note that this only represents a snapshot of 2021 and also not all countries are present in the dataset.**
 
 ## References
 
