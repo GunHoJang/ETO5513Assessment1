@@ -164,6 +164,19 @@ kable(data_summary, caption = "Summary statistics of the 'Number of people who c
 
 From the summary statistics, the continents of Asia holds the highest number of people unable to afford a healthy diet (at 1.612 billion) which is then followed by Africa (at 857 million), although Africa's population had a higher mean and median percentage share of the population being impacted compared to Asia's percentage share. **Please note that certain continents may not be represented accurately due to unavailable data and smaller pools of countries, such as Oceania (i.e. Australia and Fiji) where Fiji has skewed the represented data for the entire region.**
 
+## Visualisations
+
+```{r data visualisation}
+# Creating the scatter plot for Affordability of a Healthy Diet across Continents
+ggplot(food_affordability_data, aes(x = Continent, y = `Affordability of a healthy diet: ratio of cost to food expenditures`)) +
+  geom_point() +
+  labs(
+    title = "Affordability of a Healthy Diet across Continents",
+    x = "Continent",
+    y =  "Ratio of Cost to Food Expenditures"
+  )
+```
+
 ## References
 
 Whiting, K. (2022, September 21). *The cost-of-living crisis is having a global impact. Here's what countries are doing to help.* World Economic Forum. <https://www.weforum.org/stories/2022/09/cost-of-living-crisis-global-impact/>
