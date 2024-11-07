@@ -171,7 +171,7 @@ From the summary statistics, the continents of Asia holds the highest number of 
 ggplot(food_affordability_data, aes(x = Country, y = `Affordability of a healthy diet: ratio of cost to food expenditures`)) +
   geom_point() +
   labs(
-    title = "Affordability of a Healthy Diet by Country",
+    title = "Affordability of a Healthy Diet by Country - Updated in Visualisation Alt",
     x = "Country",
     y =  "Ratio of Cost to Food Expenditures"
   )
