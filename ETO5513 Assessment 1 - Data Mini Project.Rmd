@@ -6,7 +6,7 @@ output: html_document
 ---
 
 ```{r setup, include = FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, fig.align = 'center')
 ```
 
 ```{r libraries, include =  FALSE, message = FALSE, warning = FALSE}
@@ -51,14 +51,14 @@ variable_names <- data.frame(
     "Affordability of a healthy diet: ratio of cost to food expenditures"
   ))
 
-kable(variable_names, caption = "Variable Names of Interest")
+kable(variable_names, caption = "**Variable Names of Interest**")
 ```
 
 ## Dataset Description
 
 The R code chunk below demonstrates the data cleaning process for this project.
 
-```{r dataset cleaning, message = FALSE}
+```{r dataset cleaning}
 # Reading individual CSV files into respective dataframes
 number_healthy_diet <- read.csv("Data/number-healthy-diet-unaffordable.csv")
 
@@ -133,14 +133,14 @@ num_variables <- ncol(food_affordability_data)
 
 The dataset regarding the affordability of healthy diets contains `r num_observations` observations and `r num_variables` variables. Please note the code to derive the number of observations and variables is, as below:
 
-```{r screenshot, echo = FALSE}
+```{r screenshot, echo = FALSE, fig.cap =  "Figure 1. Screenshot of Code"}
 # Implementing the screenshot into the project
 include_graphics("Image/Number of Observations and Variables Screenshot.png")
 ```
 
 As observed below, the first two rows of the dataset can be displayed with `str()` to showcase the type of variables within the dataset.
 
-```{r first two rows, echo = FALSE}
+```{r first two rows}
 # Displaying the first two rows of the dataset
 str(food_affordability_data[1:2,])
 ```
@@ -159,7 +159,7 @@ data_summary <- food_affordability_data %>%
   ) %>% 
   head(10)
 
-kable(data_summary, caption = "Summary statistics of the 'Number of people who cannot afford a healthy diet' and 'Share of the population who cannot afford a healthy diet' variables")
+kable(data_summary, caption = "**Summary statistics of the 'Number of people who cannot afford a healthy diet' and 'Share of the population who cannot afford a healthy diet' variables**")
 ```
 
 From the summary statistics, the continents of Asia holds the highest number of people unable to afford a healthy diet (at 1.612 billion) which is then followed by Africa (at 857 million), although Africa's population had a higher mean and median percentage share of the population being impacted compared to Asia's percentage share. **Please note that certain continents may not be represented accurately due to unavailable data and smaller pools of countries, such as Oceania (i.e. Australia and Fiji) where Fiji has skewed the represented data for the entire region.**
@@ -173,14 +173,14 @@ asia_data <- food_affordability_data %>%
   select(Country, `Number of people who cannot afford a healthy diet`) %>% 
   arrange(desc(`Number of people who cannot afford a healthy diet`))
 
-kable (asia_data, caption = "Number of People Unable to Afford a Healthy Diet in Asia")
+kable (asia_data, caption = "**Number of People Unable to Afford a Healthy Diet in Asia**")
 ```
 
 The data reveals that India, China and Pakista are the three most affected countries, with a combined total of 1.218 billion people who are unable to afford a healthy diet. This accounts for nearly 76% of the reported affected population in Asia. In contrast, Cyprus, Maldives, and the United Arab Emirates report none being impacted. This could indicate that either negligible numbers are affected, or potential under-reporting or data unavailability for these countries.
 
 ## Visualisations
 
-```{r data visualisation - part a}
+```{r data visualisation - part a, fig.cap = "Figure 2. Scatter Plot Visualisation"}
 # Creating the scatter plot for Affordability of a Healthy Diet across Continents
 ggplot(food_affordability_data, aes(x = Continent, y = `Affordability of a healthy diet: ratio of cost to food expenditures`)) +
   geom_point() +
@@ -188,12 +188,13 @@ ggplot(food_affordability_data, aes(x = Continent, y = `Affordability of a healt
     title = "Affordability of a Healthy Diet across Continents",
     x = "Continent",
     y =  "Ratio of Cost to Food Expenditures"
-  )
+  ) +
+  theme(plot.title = element_text(face = "bold"))
 ```
 
-Although the scatter plot provides clarity on the data, it can be better represented as a box plot to display median, quartiles and outlier data.
+Although the scatter plot provides clarity, a box plot may better represent the data by highlighting the medin, quartiles, and any outliers.
 
-```{r data visualisation - part b}
+```{r data visualisation - part b, fig.cap = "Figure 3. Box Plot Visualisation"}
 # Creating the box plot for Affordability of a Healthy Diet across Continents
 ggplot(food_affordability_data, aes(x = Continent, y = `Affordability of a healthy diet: ratio of cost to food expenditures`)) +
   geom_boxplot() +
@@ -202,7 +203,8 @@ ggplot(food_affordability_data, aes(x = Continent, y = `Affordability of a healt
     title = "Affordability of a Healthy Diet across Continents",
     x = "Continent",
     y =  "Ratio of Cost to Food Expenditures"
-  )
+  ) +
+  theme(plot.title = element_text(face = "bold"))
 ```
 
 The following observations are made for the categorical scatter plot above:
