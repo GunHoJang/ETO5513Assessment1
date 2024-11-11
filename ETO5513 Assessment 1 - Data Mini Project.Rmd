@@ -6,7 +6,7 @@ output: html_document
 ---
 
 ```{r setup, include = FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, fig.align = 'center')
 ```
 
 ```{r libraries, include =  FALSE, message = FALSE, warning = FALSE}
@@ -18,9 +18,7 @@ library(knitr)
 
 ## Research Question
 
-This is the part_b branch version, and in recent years, the rising cost of living crisis has represented a particularly cumbersome period for economies worldwide as inflationary pressures on the price of food and energy have pushed households and businesses to the brink (Whiting, 2022; Shipman et al., 2023). Rising food prices in particular have consequentially affected a large number of people and their financial ability to afford groceries. This project will investigate this matter of food insecurity, and consider the following: how much of the population globally are unable to afford a healthy diet?
-
-a large number of people have become increasingly exposed to food affordability issues. This project will investigate the matter of food insecurity, and consider the following: how much of the population across the globe are at risk of not affording a healthy diet?
+In recent years, the rising cost of living crisis has represented a particularly cumbersome period for economies worldwide as inflationary pressures on the price of food and energy have pushed households and businesses to the brink (Whiting, 2022; Shipman et al., 2023). Rising food prices in particular have consequentially affected a large number of people and their financial ability to afford groceries. This project will investigate this matter of food insecurity, and consider the following: how much of the population globally are unable to afford a healthy diet?
 
 ## Dataset Introduction
 
@@ -51,14 +49,14 @@ variable_names <- data.frame(
     "Affordability of a healthy diet: ratio of cost to food expenditures"
   ))
 
-kable(variable_names, caption = "Variable Names of Interest")
+kable(variable_names, caption = "**Variable Names of Interest**")
 ```
 
 ## Dataset Description
 
 The R code chunk below demonstrates the data cleaning process for this project.
 
-```{r dataset cleaning, message = FALSE}
+```{r dataset cleaning}
 # Reading individual CSV files into respective dataframes
 number_healthy_diet <- read.csv("Data/number-healthy-diet-unaffordable.csv")
 
@@ -133,21 +131,21 @@ num_variables <- ncol(food_affordability_data)
 
 The dataset regarding the affordability of healthy diets contains `r num_observations` observations and `r num_variables` variables. Please note the code to derive the number of observations and variables is, as below:
 
-```{r screenshot, echo = FALSE}
+```{r screenshot, echo = FALSE, fig.cap =  "Figure 1. Screenshot of Code"}
 # Implementing the screenshot into the project
 include_graphics("Image/Number of Observations and Variables Screenshot.png")
 ```
 
 As observed below, the first two rows of the dataset can be displayed with `str()` to showcase the type of variables within the dataset.
 
-```{r first two rows, echo = FALSE}
+```{r first two rows}
 # Displaying the first two rows of the dataset
 str(food_affordability_data[1:2,])
 ```
 
 ## Data Summary
 
-```{r data summary}
+```{r data summary - part a}
 # Summary statistics for 'Number of people who cannot afford a healthy diet' and 'Affordability of a healthy diet: ratio of cost to food expenditures'
 data_summary <- food_affordability_data %>% 
   group_by(Continent) %>% 
@@ -159,14 +157,28 @@ data_summary <- food_affordability_data %>%
   ) %>% 
   head(10)
 
-kable(data_summary, caption = "Summary statistics of the 'Number of people who cannot afford a healthy diet' and 'Share of the population who cannot afford a healthy diet' variables")
+kable(data_summary, caption = "**Summary statistics of the 'Number of people who cannot afford a healthy diet' and 'Share of the population who cannot afford a healthy diet' variables**")
 ```
 
 From the summary statistics, the continents of Asia holds the highest number of people unable to afford a healthy diet (at 1.612 billion) which is then followed by Africa (at 857 million), although Africa's population had a higher mean and median percentage share of the population being impacted compared to Asia's percentage share. **Please note that certain continents may not be represented accurately due to unavailable data and smaller pools of countries, such as Oceania (i.e. Australia and Fiji) where Fiji has skewed the represented data for the entire region.**
 
+Given that Asia has the largest population unable to afford a healthy diet, we can examine this by further breaking down the numbers by country:
+
+```{r data summary - part b}
+# Break down of 'Number of people who cannot afford a healthy diet' by countries in Asia (sorted by largest population number)
+asia_data <- food_affordability_data %>% 
+  filter(Continent == "Asia") %>% 
+  select(Country, `Number of people who cannot afford a healthy diet`) %>% 
+  arrange(desc(`Number of people who cannot afford a healthy diet`))
+
+kable (asia_data, caption = "**Number of People Unable to Afford a Healthy Diet in Asia**")
+```
+
+The data reveals that India, China and Pakista are the three most affected countries, with a combined total of 1.218 billion people who are unable to afford a healthy diet. This accounts for nearly 76% of the reported affected population in Asia. In contrast, Cyprus, Maldives, and the United Arab Emirates report none being impacted. This could indicate that either negligible numbers are affected, or potential under-reporting or data unavailability for these countries.
+
 ## Visualisations
 
-```{r data visualisation}
+```{r data visualisation - part a, fig.cap = "Figure 2. Scatter Plot Visualisation"}
 # Creating the scatter plot for Affordability of a Healthy Diet across Continents
 ggplot(food_affordability_data, aes(x = Continent, y = `Affordability of a healthy diet: ratio of cost to food expenditures`)) +
   geom_point() +
@@ -174,18 +186,34 @@ ggplot(food_affordability_data, aes(x = Continent, y = `Affordability of a healt
     title = "Affordability of a Healthy Diet across Continents",
     x = "Continent",
     y =  "Ratio of Cost to Food Expenditures"
-  )
+  ) +
+  theme(plot.title = element_text(face = "bold"))
+```
+
+Although the scatter plot provides clarity, a box plot may better represent the data by highlighting the medin, quartiles, and any outliers.
+
+```{r data visualisation - part b, fig.cap = "Figure 3. Box Plot Visualisation"}
+# Creating the box plot for Affordability of a Healthy Diet across Continents
+ggplot(food_affordability_data, aes(x = Continent, y = `Affordability of a healthy diet: ratio of cost to food expenditures`)) +
+  geom_boxplot() +
+  geom_hline(yintercept = 100, color = "red", linetype = "dashed") + 
+  labs(
+    title = "Affordability of a Healthy Diet across Continents",
+    x = "Continent",
+    y =  "Ratio of Cost to Food Expenditures"
+  ) +
+  theme(plot.title = element_text(face = "bold"))
 ```
 
 The following observations are made for the categorical scatter plot above:
 
--   *Countries within the continents of Africa, the Americas, and Asia display data points that surpass 100% of the Ratio of Cost to Food Expenditures, indicating that people in these regions would have to spend more than their average food expenditure budget would allow in order to afford a healthy diet.*
+-   *Countries within the continents of Africa, the Americas, and Asia display data points that surpass 100% of the Ratio of Cost to Food Expenditures, indicating that people in these regions would have to spend more than their average food expenditure budget would allow in order to afford a healthy diet. A red dashed line has been added to the box plot visualisation to mark the 100% threshold.*
 
--   In Africa, the highest ratio is 318% for the nation of Burundi, and for Asia, the sole outlier point is Syria at 301%. These nations are characterised by a history of volatility and conflict, and both struggle considerably with poverty (BBC, 2023).
+-   In Africa, the highest ratio is 318% for the nation of Burundi, and for Asia, this is Syria at 301%. Both nations are characterised by a history of volatility and conflict, and struggle with issues of poverty (BBC, 2023). These countries thus appear as the sole outliers in the box population visualisation for their respective continents.
 
 ## Conclusion
 
-The research question for this project originally sought to determine how much of the population globally cannot afford a healthy diet. The findings present that a total sum of 2.686 billion people worlwide lack the means to afford a healthy diet, primarily in Africa and Asia. In these regions, food budgets are unable to match the total cost required to secure adequate nutrition. With one-third of the world impacted by this problem, the FAO's Director of the Agrifood Economics and Policy Division has highlighted that this represents a structural issue in our agrifood systems, requiring significant investment to help achieve the United Nation's goal of Zero Hunger by 2030 (Emsden, 2024).
+The research question for this project originally sought to determine how much of the population globally cannot afford a healthy diet. The findings present that a total sum of 2.686 billion people worldwide lack the means to afford a healthy diet, primarily in Africa and Asia. In Asia, nearly 76% of those affected are located in India, China, and Pakistan, where food budgets are unable to match the total cost required to secure adequate nutrition. With one-third of the world impacted by this problem, the FAO's Director of the Agrifood Economics and Policy Division has highlighted that this represents a structural issue in our agrifood systems, requiring significant investment to help achieve the United Nation's goal of Zero Hunger by 2030 (Emsden, 2024).
 
 ## References
 
