@@ -180,7 +180,7 @@ The data reveals that India, China and Pakista are the three most affected count
 
 ## Visualisations
 
-```{r data visualisation}
+```{r data visualisation - part a}
 # Creating the scatter plot for Affordability of a Healthy Diet across Continents
 ggplot(food_affordability_data, aes(x = Continent, y = `Affordability of a healthy diet: ratio of cost to food expenditures`)) +
   geom_point() +
@@ -191,15 +191,29 @@ ggplot(food_affordability_data, aes(x = Continent, y = `Affordability of a healt
   )
 ```
 
+Although the scatter plot provides clarity on the data, it can be better represented as a box plot to display median, quartiles and outlier data.
+
+```{r data visualisation - part b}
+# Creating the box plot for Affordability of a Healthy Diet across Continents
+ggplot(food_affordability_data, aes(x = Continent, y = `Affordability of a healthy diet: ratio of cost to food expenditures`)) +
+  geom_boxplot() +
+  geom_hline(yintercept = 100, color = "red", linetype = "dashed") + 
+  labs(
+    title = "Affordability of a Healthy Diet across Continents",
+    x = "Continent",
+    y =  "Ratio of Cost to Food Expenditures"
+  )
+```
+
 The following observations are made for the categorical scatter plot above:
 
--   *Countries within the continents of Africa, the Americas, and Asia display data points that surpass 100% of the Ratio of Cost to Food Expenditures, indicating that people in these regions would have to spend more than their average food expenditure budget would allow in order to afford a healthy diet.*
+-   *Countries within the continents of Africa, the Americas, and Asia display data points that surpass 100% of the Ratio of Cost to Food Expenditures, indicating that people in these regions would have to spend more than their average food expenditure budget would allow in order to afford a healthy diet. A red dashed line has been added to the box plot visualisation to mark the 100% threshold.*
 
--   In Africa, the highest ratio is 318% for the nation of Burundi, and for Asia, the sole outlier point is Syria at 301%. These nations are characterised by a history of volatility and conflict, and both struggle considerably with poverty (BBC, 2023).
+-   In Africa, the highest ratio is 318% for the nation of Burundi, and for Asia, this is Syria at 301%. Both nations are characterised by a history of volatility and conflict, and struggle with issues of poverty (BBC, 2023). These countries thus appear as the sole outliers in the box population visualisation for their respective continents.
 
 ## Conclusion
 
-The research question for this project originally sought to determine how much of the population globally cannot afford a healthy diet. The findings present that a total sum of 2.686 billion people worlwide lack the means to afford a healthy diet, primarily in Africa and Asia. In these regions, food budgets are unable to match the total cost required to secure adequate nutrition. With one-third of the world impacted by this problem, the FAO's Director of the Agrifood Economics and Policy Division has highlighted that this represents a structural issue in our agrifood systems, requiring significant investment to help achieve the United Nation's goal of Zero Hunger by 2030 (Emsden, 2024).
+The research question for this project originally sought to determine how much of the population globally cannot afford a healthy diet. The findings present that a total sum of 2.686 billion people worldwide lack the means to afford a healthy diet, primarily in Africa and Asia. In Asia, nearly 76% of those affected are located in India, China, and Pakistan, where food budgets are unable to match the total cost required to secure adequate nutrition. With one-third of the world impacted by this problem, the FAO's Director of the Agrifood Economics and Policy Division has highlighted that this represents a structural issue in our agrifood systems, requiring significant investment to help achieve the United Nation's goal of Zero Hunger by 2030 (Emsden, 2024).
 
 ## References
 
