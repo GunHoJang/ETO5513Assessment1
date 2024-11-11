@@ -147,7 +147,7 @@ str(food_affordability_data[1:2,])
 
 ## Data Summary
 
-```{r data summary}
+```{r data summary - part a}
 # Summary statistics for 'Number of people who cannot afford a healthy diet' and 'Affordability of a healthy diet: ratio of cost to food expenditures'
 data_summary <- food_affordability_data %>% 
   group_by(Continent) %>% 
@@ -163,6 +163,20 @@ kable(data_summary, caption = "Summary statistics of the 'Number of people who c
 ```
 
 From the summary statistics, the continents of Asia holds the highest number of people unable to afford a healthy diet (at 1.612 billion) which is then followed by Africa (at 857 million), although Africa's population had a higher mean and median percentage share of the population being impacted compared to Asia's percentage share. **Please note that certain continents may not be represented accurately due to unavailable data and smaller pools of countries, such as Oceania (i.e. Australia and Fiji) where Fiji has skewed the represented data for the entire region.**
+
+Given that Asia has the largest population unable to afford a healthy diet, we can examine this by further breaking down the numbers by country:
+
+```{r data summary - part b}
+# Population breakdown for 'Number of people who cannot afford a healthy diet' based on countries in Asia
+asia_data <- food_affordability_data %>% 
+  filter(Continent == "Asia") %>% 
+  select(Country, `Number of people who cannot afford a healthy diet`) %>% 
+  arrange(desc(`Number of people who cannot afford a healthy diet`))
+
+kable (asia_data, caption = "Number of People Unable to Afford a Healthy Diet in Asia")
+```
+
+The data reveals that India, China and Pakista are the three most affected countries, with a combined total of 1.218 billion people who are unable to afford a healthy diet. This accounts for nearly 76% of the reported affected population in Asia. In contrast, Cyprus, Maldives, and the United Arab Emirates report none being impacted. This could indicate that either negligible numbers are affected, or potential under-reporting or data unavailability for these countries.
 
 ## Visualisations
 
