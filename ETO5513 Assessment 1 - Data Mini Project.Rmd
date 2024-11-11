@@ -215,8 +215,10 @@ The following observations are made for the categorical scatter plot above:
 
 ## Conclusion
 
-The research question for this project originally sought to determine how much of the population globally cannot afford a healthy diet. The findings present that a total sum of 2.686 billion people worldwide lack the means to afford a healthy diet, primarily in Africa and Asia. In Asia, nearly 76% of those affected are located in India, China, and Pakistan, where food budgets are unable to match the total cost required to secure adequate nutrition. With one-third of the world impacted by this problem, the FAO's Director of the Agrifood Economics and Policy Division has highlighted that this represents a structural issue in our agrifood systems, requiring significant investment to help achieve the United Nation's goal of Zero Hunger by 2030 (Emsden, 2024).
+The research question for this project originally sought to determine how much of the population globally cannot afford a healthy diet. The findings present that a total sum of 2.686 billion people worlwide lack the means to afford a healthy diet, primarily in Africa and Asia. In these regions, food budgets are unable to match the total cost required to secure adequate nutrition. With one-third of the world impacted by this problem, the FAO's Director of the Agrifood Economics and Policy Division has highlighted that this represents a structural issue in our agrifood systems, requiring significant investment to help achieve the United Nation's goal of Zero Hunger by 2030 (Emsden, 2024).
 
+=======
+>>>>>>> parent of c4e908f (Added a Conclusions section)
 ## References
 
 Whiting, K. (2022, September 21). *The cost-of-living crisis is having a global impact. Here's what countries are doing to help.* World Economic Forum. <https://www.weforum.org/stories/2022/09/cost-of-living-crisis-global-impact/>
@@ -228,5 +230,3 @@ Ritchie, H., Rosado, P., & Roser, M. (2023). *Food Prices*. Our World in Data. <
 BBC. (2023, July 31). *Burundi country profile*. <https://www.bbc.com/news/world-africa-13085064>
 
 BBC. (2023, April 19). *Syria country profile*. <https://www.bbc.com/news/world-middle-east-14703856>
-
-Emsden, C. (2024, August 01). *Healthy diets remain unaffordable for a third of the world's population*. Food and Agriculture Organization of the United Nations. <https://www.fao.org/newsroom/detail/healthy-diets-remain-unaffordable-for-a-third-of-the-world-s-population/en>
