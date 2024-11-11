@@ -18,7 +18,7 @@ library(knitr)
 
 ## Research Question
 
-In recent years, the rising cost of living crisis has represented a particularly cumbersome period for economies worldwide as inflationary pressures on the price of food and energy have pushed households and businesses to the brink (Whiting, 2022; Shipman et al., 2023). Rising food prices in particular have consequentially affected a large number of people and their financial ability to afford groceries. This project will investigate this matter of food insecurity, and consider the following: how much of the population globally are unable to afford a healthy diet?
+This is the part_b branch version, and in recent years, the rising cost of living crisis has represented a particularly cumbersome period for economies worldwide as inflationary pressures on the price of food and energy have pushed households and businesses to the brink (Whiting, 2022; Shipman et al., 2023). Rising food prices in particular have consequentially affected a large number of people and their financial ability to afford groceries. This project will investigate this matter of food insecurity, and consider the following: how much of the population globally are unable to afford a healthy diet?
 
 a large number of people have become increasingly exposed to food affordability issues. This project will investigate the matter of food insecurity, and consider the following: how much of the population across the globe are at risk of not affording a healthy diet?
 
