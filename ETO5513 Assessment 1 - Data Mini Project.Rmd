@@ -167,7 +167,7 @@ From the summary statistics, the continents of Asia holds the highest number of 
 Given that Asia has the largest population unable to afford a healthy diet, we can examine this by further breaking down the numbers by country:
 
 ```{r data summary - part b}
-# Population breakdown for 'Number of people who cannot afford a healthy diet' based on countries in Asia
+# Break down of 'Number of people who cannot afford a healthy diet' by countries in Asia (sorted by largest population number)
 asia_data <- food_affordability_data %>% 
   filter(Continent == "Asia") %>% 
   select(Country, `Number of people who cannot afford a healthy diet`) %>% 
