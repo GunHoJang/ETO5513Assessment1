@@ -11,7 +11,7 @@
 
 <meta name="author" content="Gun Ho Jang" />
 
-<meta name="date" content="2024-11-11" />
+<meta name="date" content="2024-11-14" />
 
 <title>ETO5513 Assessment 1 - Data Mini Project</title>
 
@@ -253,6 +253,29 @@ if (window.hljs) {
 
 
 
+<style type="text/css">
+
+div.csl-bib-body { }
+div.csl-entry {
+clear: both;
+margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+margin-left:2em;
+text-indent:-2em;
+}
+div.csl-left-margin {
+min-width:2em;
+float:left;
+}
+div.csl-right-inline {
+margin-left:2em;
+padding-left:1em;
+}
+div.csl-indent {
+margin-left: 2em;
+}
+</style>
 
 
 
@@ -353,30 +376,32 @@ display: none;
 <h1 class="title toc-ignore">ETO5513 Assessment 1 - Data Mini
 Project</h1>
 <h4 class="author">Gun Ho Jang</h4>
-<h4 class="date">2024-11-11</h4>
+<h4 class="date">2024-11-14</h4>
 
 </div>
 
 
 <div id="research-question" class="section level2">
 <h2>Research Question</h2>
-<p>In recent years, the rising cost of living crisis has represented a
-particularly cumbersome period for economies worldwide as inflationary
-pressures on the price of food and energy have pushed households and
-businesses to the brink (Whiting, 2022; Shipman et al., 2023). Rising
-food prices in particular have consequentially affected a large number
-of people and their financial ability to afford groceries. This project
-will investigate this matter of food insecurity, and consider the
-following: how much of the population globally are unable to afford a
-healthy diet?</p>
+<p>In recent years, the rising cost of living crisis has placed
+significant strain on economies worldwide with inflationary pressures on
+the price of food and energy pushing households and businesses to the
+brink (<span class="citation">Whiting (2022)</span>; <span class="citation">Shipman et al. (2023)</span>). The increase in food
+prices has consequentially impacted many people’s financial capacity to
+afford groceries. This project will explore the issue of food insecurity
+and address the question:</p>
+<blockquote>
+<p>How much of the global population is unable to afford a healthy
+diet?</p>
+</blockquote>
 </div>
 <div id="dataset-introduction" class="section level2">
 <h2>Dataset Introduction</h2>
-<p>Data for this project was sourced from <a href="https://ourworldindata.org/food-prices">Our World in Data</a> in
-the Food Prices Data Explorer under the Food Prices topic, which in turn
-sourced its data from the Food and Agriculture Organization of the
-United Nations (‘FAO’) and the World Bank. Three different datasets were
-utilised for this project:</p>
+<p>Data for this project was retrieved from <a href="https://ourworldindata.org/food-prices">Our World in Data</a>
+within the Food Prices Data Explorer. These datasets were originally
+sourced from the Food and Agriculture Organization of the United Nations
+(‘FAO’) and the World Bank. Three different datasets were utilised for
+this project:</p>
 <ol style="list-style-type: decimal">
 <li><p><a href="https://ourworldindata.org/explorers/food-prices?Diet=Healthy+diet&amp;Cost+or+Affordability=Affordability&amp;Affordability+metric=Number+that+cannot+afford&amp;Cost+metric=%25+of+average+food+expenditure&amp;country=NGA~BGD~IND~ETH~MEX~USA~BRA~GBR">Number
 of people that cannot afford a healthy diet</a></p></li>
@@ -385,23 +410,22 @@ of population that cannot afford a healthy diet</a></p></li>
 <li><p><a href="https://ourworldindata.org/explorers/food-prices?Diet=Healthy+diet&amp;Cost+or+Affordability=Cost+&amp;Affordability+metric=Share+that+cannot+afford&amp;Cost+metric=%25+of+average+food+expenditure&amp;country=NGA~BGD~IND~ETH~MEX~USA~BRA~GBR">Cost
 of a healthy diet as a share of average expenditure on food</a></p></li>
 </ol>
-<p>We will be observing the most recent year (i.e. 2021) that data is
-readily available for all variables of interest in this project.</p>
+<p>We will observe the most recent year with complete data for all
+variables of interest, which is 2021.</p>
 <p>The first two variables of interest <em>Number of people that cannot
 afford a healthy diet</em> and <em>Share of population that cannot
-afford a healthy diet</em> detail the number and percentage share of a
-country’s population that cannot afford a healthy diet, where: ”</p>
-<p>will be looking at both the number and percentage share of a
-country’s population that cannot afford a healthy diet, where: “The cost
-of a healthy diet is the lowest-cost set of foods available that would
-meet requirements in dietary guidelines from governments and public
-health agencies. A diet is defined as unaffordable when its cost, plus
-basic non-food needs like housing and transportation, exceeds daily
-income” (Ritchie et al., 2023).</p>
-<p>Regarding the third and last variable of interest, <em>Cost of a
-healthy diet as a share of average expenditure on food</em>, it
-showcases the cost of a healthy diet represented as a ratio against a
-person’s average food expenditure in a particular country.</p>
+afford a healthy diet</em> capture the number and percentage share of a
+country’s population that cannot afford a healthy diet. The cost of a
+healthy diet is classified as “[…] the lowest-cost set of foods
+available that would meet requirements in dietary guidelines from
+governments and public health agencies. A diet is defined as
+unaffordable when its cost, plus basic non-food needs like housing and
+transportation, exceeds daily income” (<span class="citation">Ritchie,
+Rosado, and Roser (2023)</span>).</p>
+<p>The third variable of interest, <em>Cost of a healthy diet as a share
+of average expenditure on food</em>, represents the cost of a healthy
+diet as a ratio against a person’s average food expenditure in a
+particular country.</p>
 <pre class="r"><code># LIsting the variable names
 variable_names &lt;- data.frame(
   Variable_Names = c(
@@ -508,17 +532,17 @@ food_affordability_data &lt;- food_affordability_data %&gt;%
 # Re-arranging the variables columns
 food_affordability_data &lt;- food_affordability_data %&gt;% 
   select(Country, Continent, everything())</code></pre>
-<p>The dataset regarding the affordability of healthy diets contains 144
-observations and 5 variables. Please note the code to derive the number
-of observations and variables is, as below:</p>
+<p>The dataset on t he affordability of healthy diets contains 144
+observations and 5 variables. Please note that the code below was used
+to calculate these values:</p>
 <div class="figure" style="text-align: center">
 <img role="img" aria-label="Figure 1. Screenshot of Code" src="data:image/png;base64,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" alt="Figure 1. Screenshot of Code" />
 <p class="caption">
 Figure 1. Screenshot of Code
 </p>
 </div>
-<p>As observed below, the first two rows of the dataset can be displayed
-with <code>str()</code> to showcase the type of variables within the
+<p>The first two rows of the dataset can be displayed with
+<code>str()</code> in order to view the type of variables within the
 dataset.</p>
 <pre class="r"><code># Displaying the first two rows of the dataset
 str(food_affordability_data[1:2,])</code></pre>
@@ -788,9 +812,10 @@ ggplot(food_affordability_data, aes(x = Continent, y = `Affordability of a healt
 Figure 2. Scatter Plot Visualisation
 </p>
 </div>
-<p>Although the scatter plot provides clarity, a box plot may better
-represent the data by highlighting the medin, quartiles, and any
-outliers.</p>
+<p>The scatter plot provides a comparison of the affordability of a
+healthy diet across continents. However, a box plot may be more suitable
+in providing further insights by highlighting the median, quartiles, and
+any outliers.</p>
 <pre class="r"><code># Creating the box plot for Affordability of a Healthy Diet across Continents
 ggplot(food_affordability_data, aes(x = Continent, y = `Affordability of a healthy diet: ratio of cost to food expenditures`)) +
   geom_boxplot() +
@@ -807,8 +832,7 @@ ggplot(food_affordability_data, aes(x = Continent, y = `Affordability of a healt
 Figure 3. Box Plot Visualisation
 </p>
 </div>
-<p>The following observations are made for the categorical scatter plot
-above:</p>
+<p>The following observations have been made:</p>
 <ul>
 <li><p><em>Countries within the continents of Africa, the Americas, and
 Asia display data points that surpass 100% of the Ratio of Cost to Food
@@ -819,40 +843,55 @@ box plot visualisation to mark the 100% threshold.</em></p></li>
 <li><p>In Africa, the highest ratio is 318% for the nation of Burundi,
 and for Asia, this is Syria at 301%. Both nations are characterised by a
 history of volatility and conflict, and struggle with issues of poverty
-(BBC, 2023). These countries thus appear as the sole outliers in the box
-population visualisation for their respective continents.</p></li>
+(<span class="citation">BBC (2023a)</span>; <span class="citation">BBC
+(2023b)</span>). These countries thus appear as the sole outliers in the
+box plot for their respective continents.</p></li>
 </ul>
 </div>
 <div id="conclusion" class="section level2">
 <h2>Conclusion</h2>
-<p>The research question for this project originally sought to determine
-how much of the population globally cannot afford a healthy diet. The
-findings present that a total sum of 2.686 billion people worldwide lack
-the means to afford a healthy diet, primarily in Africa and Asia. In
-Asia, nearly 76% of those affected are located in India, China, and
-Pakistan, where food budgets are unable to match the total cost required
-to secure adequate nutrition. With one-third of the world impacted by
-this problem, the FAO’s Director of the Agrifood Economics and Policy
-Division has highlighted that this represents a structural issue in our
-agrifood systems, requiring significant investment to help achieve the
-United Nation’s goal of Zero Hunger by 2030 (Emsden, 2024).</p>
+<p>The project’s research question aimed to determine how much of the
+global population cannot afford a healthy diet. The findings indicate
+that approximately 2.686 billion people worldwide lack the means to
+afford a healthy diet, primarily in Africa and Asia. In Asia, nearly 76%
+of those affected are located in India, China, and Pakistan, where food
+budgets are unable to match the total cost required to secure adequate
+nutrition. With one-third of the world impacted, the FAO’s Director of
+the Agrifood Economics and Policy Division has highlighted that this
+represents a structural issue in our agrifood systems, and it will
+require significant investment in order to address this problem and to
+achieve the United Nation’s goal of Zero Hunger by 2030 (<span class="citation">Emsden (2024)</span>).</p>
 </div>
 <div id="references" class="section level2">
 <h2>References</h2>
-<p>BBC. (2023, April 19). <em>Syria country profile</em>. <a href="https://www.bbc.com/news/world-middle-east-14703856" class="uri">https://www.bbc.com/news/world-middle-east-14703856</a></p>
-<p>BBC. (2023, July 31). <em>Burundi country profile</em>. <a href="https://www.bbc.com/news/world-africa-13085064" class="uri">https://www.bbc.com/news/world-africa-13085064</a></p>
-<p>Emsden, C. (2024, August 01). <em>Healthy diets remain unaffordable
-for a third of the world’s population</em>. Food and Agriculture
-Organization of the United Nations. <a href="https://www.fao.org/newsroom/detail/healthy-diets-remain-unaffordable-for-a-third-of-the-world-s-population/en" class="uri">https://www.fao.org/newsroom/detail/healthy-diets-remain-unaffordable-for-a-third-of-the-world-s-population/en</a></p>
-<p>Ritchie, H., Rosado, P., &amp; Roser, M. (2023). <em>Food
-Prices</em>. Our World in Data. <a href="https://ourworldindata.org/food-prices" class="uri">https://ourworldindata.org/food-prices</a></p>
-<p>Shipman, A., Smondel, A., Adhinegara, B. Y., Diamond, J. W., Vega, L.
-G., Shahrour, M. H., Martin, P. &amp; Simpson, W. (2023, January 7).
-<em>Global economy 2023: how countries around the world are tackling the
-cost of living crisis</em>. The Conversation. <a href="https://theconversation.com/global-economy-2023-how-countries-around-the-world-are-tackling-the-cost-of-living-crisis-196740" class="uri">https://theconversation.com/global-economy-2023-how-countries-around-the-world-are-tackling-the-cost-of-living-crisis-196740</a></p>
-<p>Whiting, K. (2022, September 21). <em>The cost-of-living crisis is
-having a global impact. Here’s what countries are doing to help.</em>
-World Economic Forum. <a href="https://www.weforum.org/stories/2022/09/cost-of-living-crisis-global-impact/" class="uri">https://www.weforum.org/stories/2022/09/cost-of-living-crisis-global-impact/</a></p>
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="ref-bbc2023burundi" class="csl-entry">
+BBC. 2023a. <span>“Burundi Country Profile.”</span> <a href="https://www.bbc.com/news/world-africa-13085064">https://www.bbc.com/news/world-africa-13085064</a>.
+</div>
+<div id="ref-bbc2023syria" class="csl-entry">
+———. 2023b. <span>“Syria Country Profile.”</span> <a href="https://www.bbc.com/news/world-middle-east-14703856">https://www.bbc.com/news/world-middle-east-14703856</a>.
+</div>
+<div id="ref-emsden2024" class="csl-entry">
+Emsden, C. 2024. <span>“Healthy Diets Remain Unaffordable for a Third of
+the World’s Population.”</span> Food; Agriculture Organization of the
+United Nations. <a href="https://www.fao.org/newsroom/detail/healthy-diets-remain-unaffordable-for-a-third-of-the-world-s-population/en">https://www.fao.org/newsroom/detail/healthy-diets-remain-unaffordable-for-a-third-of-the-world-s-population/en</a>.
+</div>
+<div id="ref-ritchie2023" class="csl-entry">
+Ritchie, H., P. Rosado, and M. Roser. 2023. <span>“Food Prices.”</span>
+Our World in Data. <a href="https://ourworldindata.org/food-prices">https://ourworldindata.org/food-prices</a>.
+</div>
+<div id="ref-shipman2023" class="csl-entry">
+Shipman, A., A. Smondel, B. Y. Adhinegara, J. W. Diamond, L. G. Vega, M.
+H. Shahrour, P. Martin, and W. Simpson. 2023. <span>“Global Economy
+2023: How Countries Around the World Are Tackling the Cost of Living
+Crisis.”</span> The Conversation. <a href="https://theconversation.com/global-economy-2023-how-countries-around-the-world-are-tackling-the-cost-of-living-crisis-196740">https://theconversation.com/global-economy-2023-how-countries-around-the-world-are-tackling-the-cost-of-living-crisis-196740</a>.
+</div>
+<div id="ref-whiting2022" class="csl-entry">
+Whiting, K. 2022. <span>“The Cost-of-Living Crisis Is Having a Global
+Impact. Here’s What Countries Are Doing to Help.”</span> World Economic
+Forum. <a href="https://www.weforum.org/stories/2022/09/cost-of-living-crisis-global-impact/">https://www.weforum.org/stories/2022/09/cost-of-living-crisis-global-impact/</a>.
+</div>
+</div>
 </div>
 
 

@@ -10,28 +10,29 @@ bibliography: References/references.bib
 knitr::opts_chunk$set(echo = TRUE, fig.align = 'center')
 ```
 
-```{r libraries, include =  FALSE, message = FALSE, warning = FALSE}
-# Loading libraries for the project
-library(tidyverse)
-library(countrycode)
-library(knitr)
+```{r libraries, include = FALSE, message = FALSE, warning = FALSE}
+
+# Checking and loading libraries for the project (@stackoverflow2016)
+if (!require("tidyverse")) {
+  install.packages("tidyverse");library(tidyverse)
+  }
+if (!require("countrycode")) {
+  install.packages("countrycode"); library(countrycode)
+  }
+if (!require("knitr")) {
+  install.packages("knitr"); library(knitr)
+  }
 ```
 
 ## Research Question
 
-<<<<<<< HEAD
-In recent years, the rising cost of living crisis has represented a particularly cumbersome period for economies worldwide as inflationary pressures on the price of food and energy have pushed households and businesses to the brink (Whiting, 2022; Shipman et al., 2023). Rising food prices in particular have consequentially affected a large number of people and their financial ability to afford groceries. This project will investigate this matter of food insecurity, and consider the following: how much of the population globally are unable to afford a healthy diet?
-||||||| b0778d0
-This is the part_b branch version, and in recent years, the rising cost of living crisis has represented a particularly cumbersome period for economies worldwide as inflationary pressures on the price of food and energy have pushed households and businesses to the brink (Whiting, 2022; Shipman et al., 2023). Rising food prices in particular have consequentially affected a large number of people and their financial ability to afford groceries. This project will investigate this matter of food insecurity, and consider the following: how much of the population globally are unable to afford a healthy diet?
+In recent years, the rising cost of living crisis has placed significant strain on economies worldwide with inflationary pressures on the price of food and energy pushing households and businesses to the brink (@whiting2022; @shipman2023). The increase in food prices has consequentially impacted many people's financial capacity to afford groceries. This project will explore the issue of food insecurity and address the question:
 
-a large number of people have become increasingly exposed to food affordability issues. This project will investigate the matter of food insecurity, and consider the following: how much of the population across the globe are at risk of not affording a healthy diet?
-=======
-In recent years, the rising cost of living crisis has represented a particularly cumbersome period for economies worldwide as inflationary pressures on the price of food and energy have pushed households and businesses to the brink (@whiting2022; @shipman2023). Rising food prices in particular have consequentially affected a large number of people and their financial ability to afford groceries. This project will investigate this matter of food insecurity, and consider the following: how much of the population globally are unable to afford a healthy diet?
->>>>>>> part_b
+> How much of the global population is unable to afford a healthy diet?
 
 ## Dataset Introduction
 
-Data for this project was sourced from [Our World in Data](https://ourworldindata.org/food-prices) in the Food Prices Data Explorer under the Food Prices topic, which in turn sourced its data from the Food and Agriculture Organization of the United Nations ('FAO') and the World Bank. Three different datasets were utilised for this project:
+Data for this project was retrieved from [Our World in Data](https://ourworldindata.org/food-prices) within the Food Prices Data Explorer. These datasets were originally sourced from the Food and Agriculture Organization of the United Nations ('FAO') and the World Bank. Three different datasets were utilised for this project:
 
 1.  [Number of people that cannot afford a healthy diet](https://ourworldindata.org/explorers/food-prices?Diet=Healthy+diet&Cost+or+Affordability=Affordability&Affordability+metric=Number+that+cannot+afford&Cost+metric=%25+of+average+food+expenditure&country=NGA~BGD~IND~ETH~MEX~USA~BRA~GBR)
 
@@ -39,13 +40,11 @@ Data for this project was sourced from [Our World in Data](https://ourworldindat
 
 3.  [Cost of a healthy diet as a share of average expenditure on food](https://ourworldindata.org/explorers/food-prices?Diet=Healthy+diet&Cost+or+Affordability=Cost+&Affordability+metric=Share+that+cannot+afford&Cost+metric=%25+of+average+food+expenditure&country=NGA~BGD~IND~ETH~MEX~USA~BRA~GBR)
 
-We will be observing the most recent year (i.e. 2021) that data is readily available for all variables of interest in this project.
+We will observe the most recent year with complete data for all variables of interest, which is 2021.
 
-The first two variables of interest *Number of people that cannot afford a healthy diet* and *Share of population that cannot afford a healthy diet* detail the number and percentage share of a country's population that cannot afford a healthy diet, where: "
+The first two variables of interest *Number of people that cannot afford a healthy diet* and *Share of population that cannot afford a healthy diet* capture the number and percentage share of a country's population that cannot afford a healthy diet. The cost of a healthy diet is classified as "[...] the lowest-cost set of foods available that would meet requirements in dietary guidelines from governments and public health agencies. A diet is defined as unaffordable when its cost, plus basic non-food needs like housing and transportation, exceeds daily income" (@ritchie2023).
 
-will be looking at both the number and percentage share of a country's population that cannot afford a healthy diet, where: "The cost of a healthy diet is the lowest-cost set of foods available that would meet requirements in dietary guidelines from governments and public health agencies. A diet is defined as unaffordable when its cost, plus basic non-food needs like housing and transportation, exceeds daily income" (@ritchie2023).
-
-Regarding the third and last variable of interest, *Cost of a healthy diet as a share of average expenditure on food*, it showcases the cost of a healthy diet represented as a ratio against a person's average food expenditure in a particular country.
+The third variable of interest, *Cost of a healthy diet as a share of average expenditure on food*, represents the cost of a healthy diet as a ratio against a person's average food expenditure in a particular country.
 
 ```{r variable names}
 # LIsting the variable names
@@ -138,14 +137,14 @@ num_observations <- nrow(food_affordability_data)
 num_variables <- ncol(food_affordability_data)
 ```
 
-The dataset regarding the affordability of healthy diets contains `r num_observations` observations and `r num_variables` variables. Please note the code to derive the number of observations and variables is, as below:
+The dataset on t he affordability of healthy diets contains `r num_observations` observations and `r num_variables` variables. Please note that the code below was used to calculate these values:
 
 ```{r screenshot, echo = FALSE, fig.cap =  "Figure 1. Screenshot of Code"}
 # Implementing the screenshot into the project
 include_graphics("Image/Number of Observations and Variables Screenshot.png")
 ```
 
-As observed below, the first two rows of the dataset can be displayed with `str()` to showcase the type of variables within the dataset.
+The first two rows of the dataset can be displayed with `str()` in order to view the type of variables within the dataset.
 
 ```{r first two rows}
 # Displaying the first two rows of the dataset
@@ -199,7 +198,7 @@ ggplot(food_affordability_data, aes(x = Continent, y = `Affordability of a healt
   theme(plot.title = element_text(face = "bold"))
 ```
 
-Although the scatter plot provides clarity, a box plot may better represent the data by highlighting the medin, quartiles, and any outliers.
+The scatter plot provides a comparison of the affordability of a healthy diet across continents. However, a box plot may be more suitable in providing further insights by highlighting the median, quartiles, and any outliers.
 
 ```{r data visualisation - part b, fig.cap = "Figure 3. Box Plot Visualisation"}
 # Creating the box plot for Affordability of a Healthy Diet across Continents
@@ -214,14 +213,16 @@ ggplot(food_affordability_data, aes(x = Continent, y = `Affordability of a healt
   theme(plot.title = element_text(face = "bold"))
 ```
 
-The following observations are made for the categorical scatter plot above:
+The following observations have been made:
 
 -   *Countries within the continents of Africa, the Americas, and Asia display data points that surpass 100% of the Ratio of Cost to Food Expenditures, indicating that people in these regions would have to spend more than their average food expenditure budget would allow in order to afford a healthy diet. A red dashed line has been added to the box plot visualisation to mark the 100% threshold.*
 
--   In Africa, the highest ratio is 318% for the nation of Burundi, and for Asia, this is Syria at 301%. Both nations are characterised by a history of volatility and conflict, and struggle with issues of poverty (@bbc2023burundi; @bbc2023syria). These countries thus appear as the sole outliers in the box population visualisation for their respective continents.
+-   In Africa, the highest ratio is 318% for the nation of Burundi, and for Asia, this is Syria at 301%. Both nations are characterised by a history of volatility and conflict, and struggle with issues of poverty (@bbc2023burundi; @bbc2023syria). These countries thus appear as the sole outliers in the box plot for their respective continents.
 
 ## Conclusion
 
-The research question for this project originally sought to determine how much of the population globally cannot afford a healthy diet. The findings present that a total sum of 2.686 billion people worldwide lack the means to afford a healthy diet, primarily in Africa and Asia. In Asia, nearly 76% of those affected are located in India, China, and Pakistan, where food budgets are unable to match the total cost required to secure adequate nutrition. With one-third of the world impacted by this problem, the FAO's Director of the Agrifood Economics and Policy Division has highlighted that this represents a structural issue in our agrifood systems, requiring significant investment to help achieve the United Nation's goal of Zero Hunger by 2030 (@emsden2024).
+The project's research question aimed to determine how much of the global population cannot afford a healthy diet. The findings indicate that approximately 2.686 billion people worldwide lack the means to afford a healthy diet, primarily in Africa and Asia. In Asia, nearly 76% of those affected are located in India, China, and Pakistan, where food budgets are unable to match the total cost required to secure adequate nutrition. With one-third of the world impacted, the FAO's Director of the Agrifood Economics and Policy Division has highlighted that this represents a structural issue in our agrifood systems, and it will require significant investment in order to address this problem and to achieve the United Nation's goal of Zero Hunger by 2030 (@emsden2024).
 
 ## References
+
+
